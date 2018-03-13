@@ -1,0 +1,21 @@
+{
+    "presets": ["env"],
+    "plugins": [
+        "transform-class-properties",
+        "babel-plugin-syntax-async-functions",
+        [
+            "transform-async-to-module-method",
+            {
+                "module": "bluebird",
+                "method": "coroutine"
+            }
+        ],
+        [
+            "transform-runtime",
+            {
+                "polyfill"   : true,
+                "regenerator": true
+            }
+        ]
+    ]
+}

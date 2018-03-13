@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+sass/vendors/
+!sass/vendors/materialize/components/_variables.scss
+css/style.css
+fonts/
+js/main.js*
+index.html
+js/config.js

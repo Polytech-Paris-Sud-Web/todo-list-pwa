@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <%- include /ejs/layouts/head.ejs %>
+    </head>
+    <body>
+        <main>
+            <%- include /ejs/layouts/menu.ejs %>
+
+            <!--pages-->
+
+            <%- include /ejs/pages/components/loader.ejs %>
+
+            <!-- LOGIN PAGE -->
+            <div class="page container" data-url="login" data-title="App - Login">
+                <%- include /ejs/pages/login/index.ejs %>
+            </div>
+
+            <!-- HOME PAGE -->
+            <div class="page container" data-url="home" data-title="App - Home">
+                <%- include /ejs/pages/home/index.ejs %>
+            </div>
+
+            <!-- PROFILE PAGE -->
+            <div class="page container" data-url="profile" data-title="App - Profile">
+                <%- include /ejs/pages/profile/index.ejs %>
+            </div>
+        </main>
+
+        <%- include /ejs/layouts/footer.ejs %>
+
+        <%- include /ejs/modals/notification.ejs %>
+    </body>
+</html>

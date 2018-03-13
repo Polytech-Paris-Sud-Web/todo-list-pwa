@@ -1,0 +1,26 @@
+#menu-left {
+  .cover {
+    background-size: cover;
+    background: $primary-color center;
+  }
+  .user-view {
+    padding-top: 1.5em;
+    padding-left: 1.5em;
+    padding-bottom: 1em;
+
+    .name, .email {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10em;
+      padding: 0.3em 0.8em;
+    }
+
+    .email {
+      margin-top: 1em
+    }
+  }
+}
+
+#toggle-menu-left {
+  margin-left: 1em;
+  display: none;
+}
