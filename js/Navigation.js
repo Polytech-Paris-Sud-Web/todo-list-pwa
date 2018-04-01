@@ -38,7 +38,7 @@ export default class Navigation {
     }
 
     /**
-     * Check if the user can be directly login else redirect to login page
+     * Check if the user can be directly login else redirect to login page if he's online or homepage otherwise
      *
      * @param {User} user - The user to try to login
      *
@@ -55,22 +55,26 @@ export default class Navigation {
 
         let facebookAccessToken = Navigation.getCookie(config.facebook.facebookTokenCookieName);
 
-        if (userAccessToken !== '' && userEmail !== '') {
-            await user.loginWithToken(userEmail, userAccessToken, redirectionPage);
-        } else if (facebookAccessToken !== '' || !_isUndefined(parameters.access_token)) {
-            if (facebookAccessToken === '') {
-                facebookAccessToken = parameters.access_token;
-            }
+        if (!window.navigator.onLine) {
+            this.loadPage(redirectionPage);
+        } else {
+            if (userAccessToken !== '' && userEmail !== '') {
+                await user.loginWithToken(userEmail, userAccessToken, redirectionPage);
+            } else if (facebookAccessToken !== '' || !_isUndefined(parameters.access_token)) {
+                if (facebookAccessToken === '') {
+                    facebookAccessToken = parameters.access_token;
+                }
 
-            const tokenInfo = await Facebook.getTokenInfo(facebookAccessToken);
+                const tokenInfo = await Facebook.getTokenInfo(facebookAccessToken);
 
-            if (tokenInfo.data.is_valid) {
-                await user.loginWithFacebook(tokenInfo.data.user_id, facebookAccessToken, redirectionPage);
+                if (tokenInfo.data.is_valid) {
+                    await user.loginWithFacebook(tokenInfo.data.user_id, facebookAccessToken, redirectionPage);
+                } else {
+                    this.loadPage(config.navigation.loginPage);
+                }
             } else {
                 this.loadPage(config.navigation.loginPage);
             }
-        } else {
-            this.loadPage(config.navigation.loginPage);
         }
     }
 
