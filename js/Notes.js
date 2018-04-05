@@ -1,6 +1,7 @@
 import Storage from 'store2';
 import _findIndex from 'lodash-es/findIndex';
 import _remove from 'lodash-es/remove';
+import _sortBy from 'lodash-es/sortBy';
 
 /**
  * A note handler
@@ -13,6 +14,17 @@ export default class Notes {
      */
     constructor () {
         this.notes = Storage.local.get('notes', []);
+
+        this.sort();
+    }
+
+    /**
+     * Get the note collection
+     *
+     * @returns {Note[]} The note collection
+     */
+    getNotes () {
+        return this.notes;
     }
 
     /**
@@ -21,7 +33,7 @@ export default class Notes {
      * @param {Note} note - The note to add
      */
     add (note) {
-        this.notes.append(note);
+        this.notes.push(note);
         this.updateStorage();
     }
 
@@ -51,6 +63,15 @@ export default class Notes {
      * Update the local storage with the collection
      */
     updateStorage () {
+        this.sort();
+
         Storage.local.set('notes', this.notes, true);
+    }
+
+    /**
+     * Sort the notes by pinned and order
+     */
+    sort () {
+        this.notes = _sortBy(this.notes, ['pinned', 'order']);
     }
 }

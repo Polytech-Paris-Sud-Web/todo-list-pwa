@@ -40,6 +40,9 @@ $(
         window.AppNavigation.addCallback('login', Login.loadPage, Login, [user]);
         window.AppNavigation.addCallback('profile', Profile.loadPage, Profile, [user]);
 
+        // Initialize pages events
+        NotesList.initEvents();
+
         // Initialize notifications dismiss events
         window.AppNotification.initEvents();
 

@@ -1,3 +1,19 @@
 nav {
   margin-bottom: 2em;
 }
+
+#notes-container {
+  .card {
+    position: relative;
+  }
+
+  .fixed-action-btn {
+    position: absolute;
+    top: 0.4em;
+    right: 0em;
+
+    ul {
+      top: 3.8em;
+    }
+  }
+}

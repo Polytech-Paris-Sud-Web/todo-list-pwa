@@ -54,6 +54,7 @@ export default class Ejs {
         Ejs.initTextInputs(page);
         Ejs.initTextareas(page);
         Ejs.initChips(page);
+        Ejs.initFaps(page);
 
         return true;
     }
@@ -76,6 +77,7 @@ export default class Ejs {
         Ejs.initTextInputs(div);
         Ejs.initTextareas(div);
         Ejs.initChips(div);
+        Ejs.initFaps(div);
 
         return true;
     }
@@ -101,6 +103,7 @@ export default class Ejs {
         Ejs.initTextInputs(nextDiv);
         Ejs.initTextareas(nextDiv);
         Ejs.initChips(nextDiv);
+        Ejs.initFaps(nextDiv);
 
         return true;
     }
@@ -154,7 +157,7 @@ export default class Ejs {
         if (textareas.length > 0) {
             textareas.each((index, textarea) => {
                 $(textarea).val($(textarea).attr('data-value'));
-                window.M.textareaAutoResize();
+                window.M.textareaAutoResize($(textarea));
                 div.find(`label[for="${$(textarea).attr('id')}"]`).addClass('active');
             });
         }
@@ -186,6 +189,26 @@ export default class Ejs {
                         data
                     }
                 );
+            });
+        }
+    }
+
+    /**
+     * Initialize the materialize chips in the given DOM div
+     *
+     * @param {jQuery} div - DOM jQuery div
+     *
+     * @returns {undefined}
+     */
+    static initFaps (div) {
+        const faps = div.find('.fixed-action-btn');
+
+        if (faps.length > 0) {
+            faps.each((index, fap) => {
+                window.M.FloatingActionButton.init($(fap), {
+                    "direction": $(fap).attr('data-direction') || "top",
+                    "hoverEnabled": $(fap).attr('data-hover-enabled') === "true",
+                });
             });
         }
     }
