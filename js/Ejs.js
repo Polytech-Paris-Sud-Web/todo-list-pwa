@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _extend from 'lodash-es/extend';
 import _find from 'lodash-es/find';
 import _forEach from 'lodash-es/forEach';
+import _replace from 'lodash-es/replace';
 import _size from 'lodash-es/size';
 import _split from 'lodash-es/split';
 import config from './config.js';
@@ -50,11 +51,7 @@ export default class Ejs {
         page.html(template(_extend({$, _find, _forEach, _size, "gulpTemplateCompile": false}, args)));
         page.find(config.ejs.selectors.loader).fadeTo(0.5, 0);
 
-        Ejs.initSelects(page);
-        Ejs.initTextInputs(page);
-        Ejs.initTextareas(page);
-        Ejs.initChips(page);
-        Ejs.initFaps(page);
+        Ejs.initAllComponents(page);
 
         return true;
     }
@@ -71,13 +68,9 @@ export default class Ejs {
     static addTemplateIntoDiv (divId, template, args = {}) {
         const div = $(divId);
 
-        div.html(template(_extend({$, _find, _forEach, _size, "gulpTemplateCompile": false}, args)));
+        div.html(template(_extend({$, _find, _forEach, _size, _replace, "gulpTemplateCompile": false}, args)));
 
-        Ejs.initSelects(div);
-        Ejs.initTextInputs(div);
-        Ejs.initTextareas(div);
-        Ejs.initChips(div);
-        Ejs.initFaps(div);
+        Ejs.initAllComponents(div);
 
         return true;
     }
@@ -94,16 +87,9 @@ export default class Ejs {
     static addTemplateAfterDiv (divId, template, args = {}) {
         const div = $(divId);
 
-        div.after(template(_extend({$, _find, _forEach, _size, "gulpTemplateCompile": false}, args)));
+        div.after(template(_extend({$, _find, _forEach, _size, _replace, "gulpTemplateCompile": false}, args)));
 
-        // eslint-disable-next-line one-var
-        const nextDiv = div.next();
-
-        Ejs.initSelects(nextDiv);
-        Ejs.initTextInputs(nextDiv);
-        Ejs.initTextareas(nextDiv);
-        Ejs.initChips(nextDiv);
-        Ejs.initFaps(nextDiv);
+        Ejs.initAllComponents(div.next());
 
         return true;
     }
@@ -194,7 +180,7 @@ export default class Ejs {
     }
 
     /**
-     * Initialize the materialize chips in the given DOM div
+     * Initialize the materialize FAPs in the given DOM div
      *
      * @param {jQuery} div - DOM jQuery div
      *
@@ -211,5 +197,38 @@ export default class Ejs {
                 });
             });
         }
+    }
+
+    /**
+     * Initialize the materialize tooltips in the given DOM div
+     *
+     * @param {jQuery} div - DOM jQuery div
+     *
+     * @returns {undefined}
+     */
+    static initTooltips (div) {
+        const tooltips = div.find('.tooltipped');
+
+        if (tooltips.length > 0) {
+            tooltips.each((index, tooltip) => {
+                window.M.Tooltip.init($(tooltip));
+            });
+        }
+    }
+
+    /**
+     * Initialize all the materialize components in the given DOM div
+     *
+     * @param {jQuery} div - DOM jQuery div
+     *
+     * @returns {undefined}
+     */
+    static initAllComponents (div) {
+        Ejs.initSelects(div);
+        Ejs.initTextInputs(div);
+        Ejs.initTextareas(div);
+        Ejs.initChips(div);
+        Ejs.initFaps(div);
+        Ejs.initTooltips(div);
     }
 }

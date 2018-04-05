@@ -2,8 +2,12 @@ node_modules/
 .idea/
 sass/vendors/
 !sass/vendors/materialize/components/_variables.scss
+!sass/vendors/fontawesome/_variables.scss
 css/style.css
 fonts/
 js/main.js*
-index.html
 js/config.js
+js/service-worker.js
+manifest.*.json
+assets/
+index.html

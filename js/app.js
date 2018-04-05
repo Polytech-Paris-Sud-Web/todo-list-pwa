@@ -28,6 +28,13 @@ window.AppNavigation = new Navigation();
  */
 $(
     () => {
+        // Initialize service worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./js/service-worker.js', {scope: '/js/'})
+                     .then(() => console.log('Service Worker registered successfully.'))
+                     .catch(error => console.log('Service Worker registration failed:', error));
+        }
+
         // Create the user
         const user = new User();
 

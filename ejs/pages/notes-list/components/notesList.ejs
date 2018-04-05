@@ -16,20 +16,22 @@
                         <i class="large material-icons">more_vert</i>
                     </a>
                     <ul>
-                        <li><a class="btn-floating red"><i class="material-icons">delete_forever</i></a></li>
-                        <li><a class="btn-floating green"><img src="/images/pin_icon.svg" alt="pin"></a></li>
-                        <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                        <li><a class="btn-floating green tooltipped pin" data-position="bottom" data-tooltip="Pin">
+                            <i class="fas fa-thumbtack"></i>
+                        </a></li>
+                        <li><a class="btn-floating blue tooltipped edit" data-position="bottom" data-tooltip="Edit">
+                            <i class="material-icons">edit</i>
+                        </a></li>
+                        <li><a class="btn-floating red tooltipped remove" data-position="bottom" data-tooltip="Remove">
+                            <i class="material-icons">delete_forever</i>
+                        </a></li>
                     </ul>
                 </div>
                 <div class="card-content">
                     <span class="card-title">
-                        <%= note.title %>
+                        <% if (note.pinned) { %><i class="fas fa-thumbtack"></i> <% } %> <%= note.title %>
                     </span>
-                    <p><%= note.content %></p>
-                </div>
-                <div class="card-action">
-                    <a href="#">This is a link</a>
-                    <a href="#">This is a link</a>
+                    <p class="flow-text"><%- note.content %></p>
                 </div>
             </div>
         </div>

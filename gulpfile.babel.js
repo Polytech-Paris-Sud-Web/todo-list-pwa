@@ -56,6 +56,10 @@ const npmDirectory = 'node_modules',
                   {
                       'src' : `${npmDirectory}/roboto-fontface/css/roboto/sass/**/*.scss`,
                       'dest': 'sass/vendors/roboto-fontface'
+                  },
+                  {
+                      'src' : `${npmDirectory}/@fortawesome/fontawesome-free/scss/*.scss`,
+                      'dest': 'sass/vendors/fontawesome'
                   }
               ],
               'fonts': [
@@ -70,6 +74,10 @@ const npmDirectory = 'node_modules',
                   {
                       'src' : `${npmDirectory}/roboto-fontface/fonts/roboto/*`,
                       'dest': 'fonts/roboto'
+                  },
+                  {
+                      'src' : `${npmDirectory}/@fortawesome/fontawesome-free/webfonts/*`,
+                      'dest': 'fonts/fontawesome'
                   }
               ]
           }
@@ -150,7 +158,9 @@ export function vendorsClean () {
         '!sass/vendors',
         '!sass/vendors/materialize',
         '!sass/vendors/materialize/components',
-        '!sass/vendors/materialize/components/_variables.scss'
+        '!sass/vendors/materialize/components/_variables.scss',
+        '!sass/vendors/fontawesome',
+        '!sass/vendors/fontawesome/_variables.scss'
     ]);
 }
 

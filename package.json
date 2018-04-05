@@ -22,6 +22,7 @@
     "store2": "^2.7.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.1.0-4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
@@ -50,7 +51,9 @@
     "lodash": "^4.17.5",
     "material-design-icons": "^3.0.1",
     "roboto-fontface": "^0.9.0",
-    "webpack": "^3.11.0"
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "webpack": "^3.11.0",
+    "webpack-pwa-manifest": "^3.6.2"
   },
   "webpackIgnore": [],
   "scripts": {

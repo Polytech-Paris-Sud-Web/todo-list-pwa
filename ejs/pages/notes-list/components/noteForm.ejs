@@ -1,13 +1,22 @@
-<form class="col s12" id="note-form" data-id="-1">
+<form class="col s12"
+      id="note-form"
+      data-id="<% if (typeof note !== 'undefined') { %><%= note.id %><% } else { %>-1<% } %>"
+      data-pinned="<% if (typeof note !== 'undefined') { %><%= note.pinned %><% } else { %>false<% } %>"
+      data-order="<% if (typeof note !== 'undefined') { %><%= note.order %><% } else { %>-1<% } %>"
+      data-reminder="<% if (typeof note !== 'undefined') { %><%= note.reminder %><% } else { %><% } %>"
+>
     <div class="row">
         <div class="input-field col s12">
-            <input id="note-title-input" type="text">
+            <input id="note-title-input" type="text" maxlength="20" value="<% if (typeof note !== 'undefined') { %><%= note.title %><% } %>">
             <label for="note-title-input">Title</label>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s12">
-            <textarea id="note-content-input" class="materialize-textarea"></textarea>
+            <textarea id="note-content-input"
+                      class="materialize-textarea"
+                      data-value="<% if (typeof note !== 'undefined') { %><%= _replace(note.content, /<br>/g, "\n") %><% } %>">
+            </textarea>
             <label for="note-content-input">Content</label>
         </div>
     </div>

@@ -1,7 +1,7 @@
 import Storage from 'store2';
 import _findIndex from 'lodash-es/findIndex';
 import _remove from 'lodash-es/remove';
-import _sortBy from 'lodash-es/sortBy';
+import _orderBy from 'lodash-es/orderBy';
 
 /**
  * A note handler
@@ -72,6 +72,6 @@ export default class Notes {
      * Sort the notes by pinned and order
      */
     sort () {
-        this.notes = _sortBy(this.notes, ['pinned', 'order']);
+        this.notes = _orderBy(this.notes, ['pinned', 'order'], ['desc', 'asc']);
     }
 }
