@@ -1,9 +1,9 @@
 import EjsPage from '../EjsPage';
-import homePage from '../../ejs/pages/home/index.ejs';
+import aboutPage from '../../ejs/pages/about/index.ejs';
 
-export default class Home extends EjsPage {
-    static pageName    = 'home';
-    static ejsTemplate = homePage;
+export default class About extends EjsPage {
+    static pageName    = 'about';
+    static ejsTemplate = aboutPage;
 
     /**
      * Get the required template page template parameters

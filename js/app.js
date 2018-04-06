@@ -4,7 +4,7 @@ import config from './config';
 import Navigation from './Navigation';
 import Notification from './Notification';
 import User from './User';
-import Home from './pages/Home';
+import About from './pages/About';
 import NotesList from './pages/NotesList';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
@@ -42,7 +42,7 @@ $(
         user.initEvents();
 
         // Add the load page callback for all the pages
-        window.AppNavigation.addCallback('home', Home.loadPage, Home, [user]);
+        window.AppNavigation.addCallback('about', About.loadPage, About, [user]);
         window.AppNavigation.addCallback('notes-list', NotesList.loadPage, NotesList, [user]);
         window.AppNavigation.addCallback('login', Login.loadPage, Login, [user]);
         window.AppNavigation.addCallback('profile', Profile.loadPage, Profile, [user]);

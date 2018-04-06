@@ -1,6 +1,6 @@
 export default {
     "navigation"  : {
-        "landingPage"  : "loading",
+        "landingPage"  : "notes-list",
         "loginPage"    : "login",
         "homePage"     : "home",
         "pageSelectors": {
