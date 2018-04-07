@@ -25,14 +25,10 @@ const npmDirectory = 'node_modules',
           },
           'js'     : {
               'src'  : [
-                  'js/**/*.js',
-                  '!js/main.js*',
-                  '!js/vendor.js*'
+                  'js/**/*.js'
               ],
               'watch': [
-                  'js/**/*.js',
-                  '!js/main.js*',
-                  '!js/vendor.js*'
+                  'js/**/*.js'
               ],
               'dest' : 'js'
           },

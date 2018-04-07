@@ -5,9 +5,9 @@ sass/vendors/
 !sass/vendors/fontawesome/_variables.scss
 css/style.css
 fonts/
-js/main.js*
 js/config.js
-js/service-worker.js
-manifest.*.json
 assets/
+main.js*
+manifest.*.json
+service-worker.js
 index.html
