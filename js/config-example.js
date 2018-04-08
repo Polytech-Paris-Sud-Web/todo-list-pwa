@@ -2,7 +2,7 @@ export default {
     "navigation"  : {
         "landingPage"  : "notes-list",
         "loginPage"    : "login",
-        "homePage"     : "home",
+        "homePage"     : "notes-list",
         "pageSelectors": {
             "currentPage": ".current-page",
             "page"       : ".page",
@@ -45,7 +45,7 @@ export default {
             "form"          : {
                 "container": "#note-form",
                 "title"    : "#note-title-input",
-                "content"  : "#note-content-input",
+                "content"  : "#note-content-input"
             }
         }
     },

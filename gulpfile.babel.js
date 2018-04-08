@@ -24,12 +24,8 @@ const npmDirectory = 'node_modules',
               'dest' : 'css'
           },
           'js'     : {
-              'src'  : [
-                  'js/**/*.js'
-              ],
-              'watch': [
-                  'js/**/*.js'
-              ],
+              'src'  : 'js/**/*.js',
+              'watch': 'js/**/*.js',
               'dest' : 'js'
           },
           'ejs'    : {
@@ -147,8 +143,6 @@ export function vendorsMoveFonts (cb) {
  */
 export function vendorsClean () {
     return del([
-        'js/vendor.js',
-        'js/vendor.js.map',
         'fonts',
         'sass/vendors/**',
         '!sass/vendors',

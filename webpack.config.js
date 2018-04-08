@@ -32,7 +32,7 @@ module.exports = {
                 "background_color": "#01579b",
                 "theme_color"     : "#01579b",
                 "theme-color"     : "#01579b",
-                "start_url"       : PUBLIC_PATH + 'index.html',
+                "start_url"       : `${PUBLIC_PATH}index.html`,
                 "icons"           : [
                     {
                         "src"        : path.resolve(__dirname, 'images/icon.png'),
@@ -48,8 +48,10 @@ module.exports = {
                 "dontCacheBustUrlsMatching": /\.\w{8}\./,
                 "filename": "service-worker.js",
                 "minify": true,
-                "navigateFallback": PUBLIC_PATH + 'index.html',
-                "staticFileGlobsIgnorePatterns": [/\.map$/, /manifest\.json$/]
+                "staticFileGlobs": ["index.html", "css/style.css", "images/*.*"],
+                "mergeStaticsConfig": true,
+                "navigateFallback": `${PUBLIC_PATH}index.html`,
+                "staticFileGlobsIgnorePatterns": [/\.map$/]
             }
         )
     ],

@@ -1,13 +1,13 @@
 node_modules/
 .idea/
+fonts/
+assets/
 sass/vendors/
 !sass/vendors/materialize/components/_variables.scss
 !sass/vendors/fontawesome/_variables.scss
 css/style.css
-fonts/
 js/config.js
-assets/
 main.js*
-manifest.*.json
+manifest*.json
 service-worker.js
 index.html

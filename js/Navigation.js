@@ -55,26 +55,25 @@ export default class Navigation {
 
         let facebookAccessToken = Navigation.getCookie(config.facebook.facebookTokenCookieName);
 
+        // eslint-disable-next-line no-negated-condition
         if (!window.navigator.onLine) {
             this.loadPage(redirectionPage);
-        } else {
-            if (userAccessToken !== '' && userEmail !== '') {
-                await user.loginWithToken(userEmail, userAccessToken, redirectionPage);
-            } else if (facebookAccessToken !== '' || !_isUndefined(parameters.access_token)) {
-                if (facebookAccessToken === '') {
-                    facebookAccessToken = parameters.access_token;
-                }
+        } else if (userAccessToken !== '' && userEmail !== '') {
+            await user.loginWithToken(userEmail, userAccessToken, redirectionPage);
+        } else if (facebookAccessToken !== '' || !_isUndefined(parameters.access_token)) {
+            if (facebookAccessToken === '') {
+                facebookAccessToken = parameters.access_token;
+            }
 
-                const tokenInfo = await Facebook.getTokenInfo(facebookAccessToken);
+            const tokenInfo = await Facebook.getTokenInfo(facebookAccessToken);
 
-                if (tokenInfo.data.is_valid) {
-                    await user.loginWithFacebook(tokenInfo.data.user_id, facebookAccessToken, redirectionPage);
-                } else {
-                    this.loadPage(config.navigation.loginPage);
-                }
+            if (tokenInfo.data.is_valid) {
+                await user.loginWithFacebook(tokenInfo.data.user_id, facebookAccessToken, redirectionPage);
             } else {
                 this.loadPage(config.navigation.loginPage);
             }
+        } else {
+            this.loadPage(config.navigation.loginPage);
         }
     }
 
