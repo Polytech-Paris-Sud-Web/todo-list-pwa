@@ -11,24 +11,24 @@
         "sourceType" : "module"
     },
     "rules"        : {
-        "id-length"              : [
+        "id-length"                  : [
             "error",
             {
                 "min"       : 2,
                 "exceptions": ["_", "$", "i", "j", "x", "y", "e"]
             }
         ],
-        "max-lines"              : [
+        "max-lines"                  : [
             "error",
             {
                 "skipBlankLines": true,
                 "skipComments"  : true
             }
         ],
-        "object-property-newline": [
+        "object-property-newline"    : [
             "error",
             {
-              "allowMultiplePropertiesPerLine": true
+                "allowMultiplePropertiesPerLine": true
             }
         ],
         "lines-between-class-members": [
@@ -38,7 +38,7 @@
                 "exceptAfterSingleLine": true
             }
         ],
-        "operator-linebreak"     : [
+        "operator-linebreak"         : [
             "error",
             "after",
             {
@@ -47,38 +47,44 @@
                     ":": "ignore"
                 }
             }
-      ],
-      "function-paren-newline" : ["error", "consistent"],
-      "linebreak-style"        : ["error", "unix"],
-      "semi"                   : ["error", "always"],
-      "max-len"                : ["error", 120],
-      "max-params"             : ["error", 10],
-      "padded-blocks"          : ["error", "never"],
-      "func-style"             : ["error", "declaration"],
-      "dot-location"           : ["error", "property"],
-      "consistent-this"        : ["error", "self"],
-      "array-element-newline"  : "off",
-      "prefer-destructuring"   : "off",
-      "object-curly-newline"   : "off",
-      "quotes"                 : "off",
-      "indent"                 : "off",
-      "no-multi-spaces"        : "off",
-      "init-declarations"      : "off",
-      "no-magic-numbers"       : "off",
-      "no-console"             : "off",
-      "no-sync"                : "off",
-      "lines-around-comment"   : "off",
-      "sort-imports"           : "off",
-      "sort-vars"              : "off",
-      "spaced-comment"         : "off",
-      "sort-keys"              : "off",
-      "max-statements"         : "off",
-      "no-mixed-operators"     : "off",
-      "no-param-reassign"      : "off",
-      "key-spacing"            : "off",
-      "no-ternary"             : "off",
-      "no-plusplus"            : "off",
-      "multiline-ternary"      : "off",
-      "require-await"          : "off"
+        ],
+        "newline-per-chained-call"   : [
+            "error",
+            {
+                "ignoreChainWithDepth": 3
+            }
+        ],
+        "function-paren-newline"     : ["error", "consistent"],
+        "linebreak-style"            : ["error", "unix"],
+        "semi"                       : ["error", "always"],
+        "max-len"                    : ["error", 120],
+        "max-params"                 : ["error", 10],
+        "padded-blocks"              : ["error", "never"],
+        "func-style"                 : ["error", "declaration"],
+        "dot-location"               : ["error", "property"],
+        "consistent-this"            : ["error", "self"],
+        "array-element-newline"      : "off",
+        "prefer-destructuring"       : "off",
+        "object-curly-newline"       : "off",
+        "quotes"                     : "off",
+        "indent"                     : "off",
+        "no-multi-spaces"            : "off",
+        "init-declarations"          : "off",
+        "no-magic-numbers"           : "off",
+        "no-console"                 : "off",
+        "no-sync"                    : "off",
+        "lines-around-comment"       : "off",
+        "sort-imports"               : "off",
+        "sort-vars"                  : "off",
+        "spaced-comment"             : "off",
+        "sort-keys"                  : "off",
+        "max-statements"             : "off",
+        "no-mixed-operators"         : "off",
+        "no-param-reassign"          : "off",
+        "key-spacing"                : "off",
+        "no-ternary"                 : "off",
+        "no-plusplus"                : "off",
+        "multiline-ternary"          : "off",
+        "require-await"              : "off"
     }
 }

@@ -44,13 +44,13 @@ module.exports = {
         ),
         new SWPrecacheWebpackPlugin(
             {
-                "cacheId": "yxJFSPkfxth740gIyPETEJF3Z96nOFvm",
-                "dontCacheBustUrlsMatching": /\.\w{8}\./,
-                "filename": "service-worker.js",
-                "minify": true,
-                "staticFileGlobs": ["index.html", "css/style.css", "images/*.*"],
-                "mergeStaticsConfig": true,
-                "navigateFallback": `${PUBLIC_PATH}index.html`,
+                "cacheId"                      : "yxJFSPkfxth740gIyPETEJF3Z96nOFvm",
+                "dontCacheBustUrlsMatching"    : /\.\w{8}\./,
+                "filename"                     : "service-worker.js",
+                "minify"                       : true,
+                "staticFileGlobs"              : ["index.html", "css/style.css", "images/*.*"],
+                "mergeStaticsConfig"           : true,
+                "navigateFallback"             : `${PUBLIC_PATH}index.html`,
                 "staticFileGlobsIgnorePatterns": [/\.map$/]
             }
         )

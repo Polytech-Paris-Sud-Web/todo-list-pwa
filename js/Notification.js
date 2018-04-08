@@ -1,5 +1,3 @@
-/* global Materialize */
-
 import $ from 'jquery';
 import _delay from 'lodash-es/delay';
 import config from './config';

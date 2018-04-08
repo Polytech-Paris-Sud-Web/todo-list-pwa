@@ -4,7 +4,6 @@ import _max from 'lodash-es/max';
 import _map from 'lodash-es/map';
 import _forEach from 'lodash-es/forEach';
 import _find from 'lodash-es/find';
-import _partition from 'lodash-es/partition';
 import _parseInt from 'lodash-es/parseInt';
 import _replace from 'lodash-es/replace';
 import Sortable from 'sortablejs/Sortable';
@@ -39,7 +38,10 @@ export default class NotesList extends EjsPage {
     static async loadPage () {
         await super.loadPage();
 
-        Sortable.create($(config.notesList.selectors.notesContainer).get(0));
+        Sortable.create(
+            $(config.notesList.selectors.notesContainer).get(0),
+            {"onEnd": _bind(NotesList.reordList, this)}
+        );
 
         return true;
     }
@@ -52,7 +54,10 @@ export default class NotesList extends EjsPage {
     static async reloadPage () {
         await super.reloadPage();
 
-        Sortable.create($(config.notesList.selectors.notesContainer).get(0));
+        Sortable.create(
+            $(config.notesList.selectors.notesContainer).get(0),
+            {"onEnd": _bind(NotesList.reordList, this)}
+        );
 
         return true;
     }
@@ -79,6 +84,8 @@ export default class NotesList extends EjsPage {
      * Display the note form
      *
      * @param {Event} e - The event fired
+     *
+     * @returns {undefined}
      */
     static displayNoteForm (e) {
         e.preventDefault();
@@ -111,18 +118,20 @@ export default class NotesList extends EjsPage {
 
         const notesHandler = new Notes(),
               form         = $(e.currentTarget).closest(config.notesList.selectors.form.container),
-              notesPinned  = _partition(notesHandler.getNotes(), ['pinned', true]),
               noteId       = _parseInt(form.attr('data-id'));
-
-        _forEach(notesPinned[1], (note) => note.order++);
 
         if (noteId === -1) {
             // New note
+            _forEach(notesHandler.getNotes(), (note) => {
+                note.order++;
+                notesHandler.update(note);
+            });
+
             notesHandler.add(new Note(
                 _max(_map(notesHandler.getNotes(), 'id')) + 1 || 1,
                 form.find(config.notesList.selectors.form.title).val(),
                 _replace(form.find(config.notesList.selectors.form.content).val(), /\r?\n/g, '<br>'),
-                _max(_map(notesPinned[1], 'order')) + 1 || 1
+                0
             ));
         } else {
             // Update note
@@ -146,7 +155,7 @@ export default class NotesList extends EjsPage {
      *
      * @returns {Promise<boolean>} True when the page is reloaded
      */
-    static pinNote(e) {
+    static pinNote (e) {
         e.preventDefault();
 
         const notesHandler = new Notes(),
@@ -165,8 +174,10 @@ export default class NotesList extends EjsPage {
      * Edit a note
      *
      * @param {Event} e - The event fired
+     *
+     * @returns {undefined}
      */
-    static editNote(e) {
+    static editNote (e) {
         e.preventDefault();
 
         const notesHandler = new Notes(),
@@ -185,15 +196,46 @@ export default class NotesList extends EjsPage {
      *
      * @returns {Promise<boolean>} True when the page is reloaded
      */
-    static removeNote(e) {
+    static removeNote (e) {
         e.preventDefault();
 
         const notesHandler = new Notes(),
-              noteId       = $(e.currentTarget).closest(config.notesList.selectors.noteContainer).attr('data-id');
+              noteId       = $(e.currentTarget).closest(config.notesList.selectors.noteContainer).attr('data-id'),
+              removed      = notesHandler.remove(_find(notesHandler.getNotes(), ['id', _parseInt(noteId)]));
 
-        notesHandler.remove(_find(notesHandler.getNotes(), ['id', _parseInt(noteId)]));
+        _forEach(notesHandler.getNotes(), (note) => {
+            if (note.order > removed.order) {
+                note.order--;
+                notesHandler.update(note);
+            }
+        });
+
         window.M.Tooltip.getInstance($(e.currentTarget)).destroy();
 
         return NotesList.reloadPage();
+    }
+
+    /**
+     * Reord the list after a note has been moved
+     *
+     * @param {Event} e - The event fired
+     *
+     * @returns {undefined}
+     */
+    static reordList (e) {
+        const notesHandler    = new Notes(),
+              noteId          = $(e.item).find(config.notesList.selectors.noteContainer).attr('data-id'),
+              movedNote       = _find(notesHandler.getNotes(), ['id', _parseInt(noteId)]),
+              arrivalPosition = e.newIndex;
+
+        _forEach(notesHandler.getNotes(), (note) => {
+            if (note.order >= arrivalPosition) {
+                note.order++;
+                notesHandler.update(note);
+            }
+        });
+
+        movedNote.order = arrivalPosition;
+        notesHandler.update(movedNote);
     }
 }

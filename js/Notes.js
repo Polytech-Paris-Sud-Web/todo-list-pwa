@@ -31,6 +31,8 @@ export default class Notes {
      * Add a note to the collection
      *
      * @param {Note} note - The note to add
+     *
+     * @returns {undefined}
      */
     add (note) {
         this.notes.push(note);
@@ -41,6 +43,8 @@ export default class Notes {
      * Remove a note from the collection
      *
      * @param {Note} note - The note to remove
+     *
+     * @returns {undefined}
      */
     remove (note) {
         _remove(this.notes, (noteObject) => noteObject.id === note.id);
@@ -52,6 +56,8 @@ export default class Notes {
      * Update a note from the collection
      *
      * @param {Note} note - The note to update
+     *
+     * @returns {undefined}
      */
     update (note) {
         this.notes[_findIndex(this.notes, (noteObject) => noteObject.id === note.id)] = note;
@@ -61,15 +67,18 @@ export default class Notes {
 
     /**
      * Update the local storage with the collection
+     *
+     * @returns {undefined}
      */
     updateStorage () {
         this.sort();
-
         Storage.local.set('notes', this.notes, true);
     }
 
     /**
      * Sort the notes by pinned and order
+     *
+     * @returns {undefined}
      */
     sort () {
         this.notes = _orderBy(this.notes, ['pinned', 'order'], ['desc', 'asc']);

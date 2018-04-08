@@ -193,7 +193,7 @@ export default class Ejs {
             faps.each((index, fap) => {
                 window.M.FloatingActionButton.init($(fap), {
                     "direction": $(fap).attr('data-direction') || "top",
-                    "hoverEnabled": $(fap).attr('data-hover-enabled') === "true",
+                    "hoverEnabled": $(fap).attr('data-hover-enabled') === "true"
                 });
             });
         }
