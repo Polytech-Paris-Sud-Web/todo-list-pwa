@@ -58,6 +58,7 @@ export default class Navigation {
         // eslint-disable-next-line no-negated-condition
         if (!window.navigator.onLine) {
             this.loadPage(redirectionPage);
+            this.initNavigationAfterLogin();
         } else if (userAccessToken !== '' && userEmail !== '') {
             await user.loginWithToken(userEmail, userAccessToken, redirectionPage);
         } else if (facebookAccessToken !== '' || !_isUndefined(parameters.access_token)) {
@@ -74,6 +75,7 @@ export default class Navigation {
             }
         } else {
             this.loadPage(redirectionPage);
+            this.initNavigationAfterLogin();
         }
     }
 
