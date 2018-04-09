@@ -48,7 +48,7 @@ module.exports = {
                 "dontCacheBustUrlsMatching"    : /\.\w{8}\./,
                 "filename"                     : "service-worker.js",
                 "minify"                       : true,
-                "staticFileGlobs"              : ["index.html", "css/style.css", "images/*.*"],
+                "staticFileGlobs"              : ["index.html", "main.js", "manifest.json", "css/style.css", "images/*.*"],
                 "mergeStaticsConfig"           : true,
                 "navigateFallback"             : `${PUBLIC_PATH}index.html`,
                 "staticFileGlobsIgnorePatterns": [/\.map$/]
