@@ -50,7 +50,10 @@ const npmDirectory = 'node_modules',
                       'dest': 'sass/vendors/roboto-fontface'
                   },
                   {
-                      'src' : `${npmDirectory}/@fortawesome/fontawesome-free/scss/*.scss`,
+                      'src' : [
+                          `${npmDirectory}/@fortawesome/fontawesome-free/scss/*.scss`,
+                          `!${npmDirectory}/@fortawesome/fontawesome-free/scss/_variables.scss`
+                      ],
                       'dest': 'sass/vendors/fontawesome'
                   }
               ],
