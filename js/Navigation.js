@@ -73,7 +73,7 @@ export default class Navigation {
                 this.loadPage(config.navigation.loginPage);
             }
         } else {
-            this.loadPage(config.navigation.loginPage);
+            this.loadPage(redirectionPage);
         }
     }
 
